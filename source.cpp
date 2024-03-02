@@ -3,13 +3,13 @@
 #include <random>
 #include <ctime>
 
-bool PlayGame(int &w, int &l, int &t) {
+bool PlayGame(int &w, int &l, int &t) { // ASKS IF YOU WANT TO PLAY ANOTHER GAME
 	char answer;
 	std::cout << "Would you like to play again? (Y/N) ";
 	std::cin >> answer;
 	if (answer != 121 && answer != 89) {
 		std::cout << "Thanks for playing!\n";
-		printf("You won %d round(s), tied %d round(s), and lost %d round(s)!\n", w, l, t);
+		printf("You won %d round(s), tied %d round(s), and lost %d round(s)!\n", w, t, l);
 		return false;
 	}
 	else {
@@ -17,14 +17,14 @@ bool PlayGame(int &w, int &l, int &t) {
 	}
 }
 
-int choice() {
+int choice() { // GETS A CHOICE FROM YOU
 	std::string answer;
 	char realAnswer;
 	while (true) {
 		std::cout << "Rock Paper or Scissors?\n";
 		std::cin >> answer;
 		for (int i = 0; i < answer.size(); i++) {
-			if (isupper(answer[i]) == true) {
+			if (std::isupper(answer[i]) == true) {
 				answer[i] = answer[i] + 32;
 			}
 		}
@@ -46,12 +46,12 @@ int choice() {
 	}
 }
 
-int RandomChoice() {
+int RandomChoice() { // GETS A CHOICE TO GO AGAINST YOU
 	int choice = (rand() % 3) + 1;
 	return choice;
 }
 
-void whoWins(int c1, int c2, int &w, int &l, int &t) {
+void whoWins(int c1, int c2, int &w, int &l, int &t) { // FIND WINNER
 	if (c1 == 1) { // YOU PICKED ROCK
 		if (c2 == 1) {
 			std::cout << "You tied! Your opponent picked Rock!\n";
@@ -98,11 +98,11 @@ void whoWins(int c1, int c2, int &w, int &l, int &t) {
 
 int main() {
 	int win = 0, lose = 0, tie = 0;
-	srand(NULL);
+	srand(time(0));
 	char answer;
 	std::cout << "Welcome to Rock Paper Scissors!\nWould you like to play a game? (Y/N) ";
 	std::cin >> answer;
-	if (tolower(answer) != 'y') {
+	if (std::tolower(answer) != 'y') {
 		std::cout << "Goodbye!\n";
 	}
 	else {
